@@ -25,8 +25,12 @@ router.get('/range', async (req, res) => {
 });
 
 router.post('/', async (req, res) => {
+	console.log("in post route");
+	console.log(req.body);
 	try {
 		const workout = req.body;
+		workout.day = Date.now();
+		console.log(workout);
 		const result = await db.Workout.create(workout);
 		res.json(result);
 	} catch (err) {
@@ -37,11 +41,10 @@ router.post('/', async (req, res) => {
 router.put('/:id', async (req, res) => {
 	console.log('in put route');
 	try {
-		// const exercise = JSON.parse(req.body);
 		const exercise = req.body;
 		console.log(exercise);
 		console.log(req.params.id);
-		const result = await db.Workout.findOneAndUpdate(
+		const result = await db.Workout.findByIdAndUpdate(
 			req.params.id,
 			{ $push: { exercises: exercise } },
 			{ new: true }
