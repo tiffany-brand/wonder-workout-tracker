@@ -4,6 +4,8 @@ const mongoose = require('mongoose');
 const routes = require('./routes/index');
 const htmlRoutes = require('./routes/htmlRoutes');
 
+require('dotenv').config()
+
 const PORT = process.env.PORT || 3000;
 
 const db = require('./models');
@@ -24,7 +26,13 @@ app.use('/api', routes);
 // Setup html routes
 app.use('/', htmlRoutes);
 
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/workout', { useNewUrlParser: true });
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/workout', {
+	useNewUrlParser: true,
+	useUnifiedTopology: true,
+	useCreateIndex: true,
+	useFindAndModify: false
+}
+);
 
 app.listen(PORT, () => {
 	console.log(`App running on port ${PORT}!`);
