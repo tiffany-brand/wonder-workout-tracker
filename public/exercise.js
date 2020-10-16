@@ -113,11 +113,16 @@ async function handleFormSubmit(event) {
     workoutData.reps = Number(repsInput.value.trim());
     workoutData.duration = Number(resistanceDurationInput.value.trim());
   }
-
-  await API.addExercise(workoutData);
-  clearInputs();
-  validateInputs();
-  toast.classList.add("success");
+  // Check for exercise data
+  if (workoutData.name) {
+    await API.addExercise(workoutData);
+    clearInputs();
+    toast.classList.add("success");
+  } else {
+    if (shouldNavigateAway) {
+      location.href = "/";
+    }
+  }
 }
 
 function handleToastAnimationEnd() {
