@@ -6,26 +6,26 @@ const htmlRoutes = require('./routes/htmlRoutes');
 
 require('dotenv').config()
 
+// Set up Express
 const PORT = process.env.PORT || 3000;
-
-const db = require('./models');
-
-// const User = require("./userModel.js");
 const app = express();
 
+// Set up logger
 app.use(logger('dev'));
 
+// Set up Express app to handle data parsing
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-
+// Set up Express app to server static files
 app.use(express.static('public'));
 
-// Setup api routes
+// Set up api routes
 app.use('/api', routes);
 
-// Setup html routes
+// Set up html routes
 app.use('/', htmlRoutes);
 
+// connect to Mongo database with Mongoose
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/workout', {
 	useNewUrlParser: true,
 	useUnifiedTopology: true,
@@ -34,6 +34,7 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/workout', {
 }
 );
 
+// Listener
 app.listen(PORT, () => {
 	console.log(`App running on port ${PORT}!`);
 });
