@@ -38,7 +38,6 @@ router.post('/', async (req, res) => {
 
 // PUT - Add exercises to a workout
 router.put('/:id', async (req, res) => {
-	console.log('in put route');
 	try {
 		const exercise = req.body;
 		const result = await db.Workout.findByIdAndUpdate(
