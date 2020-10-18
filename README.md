@@ -14,7 +14,7 @@
 * [Questions](#questions)
 
 ## Description
-Track workouts to keep your body wonderful! A workout tracking app using Node.js, Express, MongoDB, and Mongoose. This application allows a user to create new workouts or continue with the last workout. They can then add cardio or resistance exercises to each workout. The dashboard displays statistics about the workouts.
+Track workouts to keep your body wonderful! A workout tracking app using Node.js, Express, MongoDB, and Mongoose. When a user begins the application, they view a page with the stats of the last workout including the workout date, total duration, number of exercises performed, and total distance, weight, sets, and reps. The user can then create a new workout, or continue with the last workout. They can then add cardio or resistance exercises to the last workout or a new workout. The dashboard displays statistics about the workouts.
 
 ### User Story
 
